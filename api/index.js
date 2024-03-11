@@ -31,12 +31,14 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 
 app.use((err, req, res, next) => {
+  comsole.error(error);
   const statusCode = err.statusCode || 500;
   const message  = err.message || "Internal Server Error";
   return res.status(statusCode).json({
     success: false,
     statusCode,
-    message
+    message,
+    error: error.message
   });
 });
 
